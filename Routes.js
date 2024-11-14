@@ -7,7 +7,7 @@ const {
     bookUpdate,
     bookDelete,
 } = require('./Controller');
-
+const upload = require("./multer");
 const handleErrors = require("./middleware")
 
 function validate(req, res, next) {
@@ -19,7 +19,7 @@ router.get('/', validate, booksGet, handleErrors);
 
 router.get('/:id', getBookById, handleErrors);
 
-router.post('/', bookCreate, handleErrors);
+router.post('/', upload.single('image'), bookCreate, handleErrors);
 
 router.put('/:id', bookUpdate, handleErrors);
 

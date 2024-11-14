@@ -27,7 +27,8 @@ exports.getBookById = async (req, res, next) => {
 
 exports.bookCreate = async (req, res, next) => {
     try {
-        const newBook = req.body;
+        console.log(req.body);
+        const newBook = { ...req.body };
         if (req.file)
             newBook.image = `${req.protocol}://${req.get("host")}/${req.file.path}`;
         await Book.create(req.body);
